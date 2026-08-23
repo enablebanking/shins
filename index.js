@@ -169,7 +169,7 @@ function preProcess(content,options) {
             if (options.source) filename = path.resolve(path.dirname(options.source),filename);
             let s = safeReadFileSync(filename,'utf8');
             let include = s.split('\r').join('').split('\n');
-            lines.splice(l,1,...include);
+            lines = lines.slice(0, l).concat(include, lines.slice(l + 1));
         }
         else lines[l] = line;
     }
